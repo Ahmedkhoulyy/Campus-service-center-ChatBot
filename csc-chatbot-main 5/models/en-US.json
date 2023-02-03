@@ -1,0 +1,291 @@
+{
+  "invocation": "my test app",
+  "intents": [{
+      "name": "InitialIntent",
+      "phrases": [
+        "hello",
+        "greetings",
+        "hi there!",
+        "hello there"
+      ]
+    },
+    {
+      "name": "OpenTimingsIntent",
+      "phrases": [
+        "Is the {location} open {datetime}?",
+        "Is it open?",
+        "When is it open?",
+        "Will it be open today?",
+        "What about {datetime}?",
+        "When's the {location} open?",
+        "How about on {datetime}?",
+        "Will the {location} be open on {datetime}?",
+        "When will the {location} be open?",
+        "Can I go to the {location}?",
+        "Maybe {datetime}?",
+        "What are the opening times for the {location}?"
+      ],
+      "dialogflow": {
+        "webhookForSlotFilling": true
+      },
+      "inputs": [{
+          "name": "location",
+          "type": "AVAIL_LOCATIONS",
+          "dialogflow": {
+            "required": true
+          }
+        },
+        {
+          "name": "datetime",
+          "type": {
+            "dialogflow": "@sys.date-time"
+          },
+          "dialogflow": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "GetTranscriptsIntent",
+      "phrases": [
+        "I want my transcripts",
+        "I need {transcript_type} transcripts",
+        "How can I get my {transcript_type} study records",
+        "Where can I get my course transcripts",
+        "I need my transcript of records, {transcript_type} ones",
+        "I have to get my {transcript_type} study records"
+      ],
+      "dialogflow": {
+        "webhookForSlotFilling": true
+      },
+      "inputs": [{
+        "name": "transcript_type",
+        "type": "TRANSCRIPT_TYPES",
+        "dialogflow": {
+          "required": true
+        }
+      }]
+    },
+    {
+      "name": "PhysicalIntent",
+      "phrases": [
+        "Physical",
+        "Paper"
+      ]
+    },
+    {
+      "name": "DigitalIntent",
+      "phrases": [
+        "Digital",
+        "Web"
+      ]
+    },
+    {
+      "name": "TranscriptCredentialIntent",
+      "phrases": [
+        "{name}, {matric}",
+        "My name is {name} and my id is {matric}",
+        "{name} and {matric}",
+        "I'm {name} and my id is {matric}",
+        "I am {name} and my matriculation number is {matric}",
+        "I'm {name}",
+        "Id: {matric}",
+        "My name is {name}",
+        "My id is {id}",
+        "{matric}",
+        "{name}"
+      ],
+      "dialogflow": {
+        "webhookForSlotFilling": true
+      },
+      "inputs": [{
+          "name": "name",
+          "type": {
+            "dialogflow": "@sys.given-name"
+          },
+          "dialogflow": {
+            "required": true
+          }
+        },
+        {
+          "name": "matric",
+          "type": {
+            "dialogflow": "@sys.number"
+          },
+          "dialogflow": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "NoIntent",
+      "phrases": [
+        "No",
+        "no, thanks",
+        "I don't want to give my information"
+      ]
+    },
+    {
+      "name": "YesIntent",
+      "phrases": [
+        "Yes, please",
+        "Yes",
+        "Sure",
+        "Of course"
+      ]
+    },
+    {
+      "name": "GenerateTANIntent",
+      "phrases": [
+        "I want a new TAN list",
+        "How can I generate a new TAN List",
+        "Where can I get a new TAN List",
+        "I want more TANs"
+      ]
+    },
+    {
+      "name": "LocationIntent",
+      "phrases": [
+        "Where is the mensa?",
+        "Where is canteen located?",
+        "Where is the {location}?",
+        "How can I get to {location}?",
+        "Where is {location} {hall_id}?",
+        "Where's the {location} {hall_id}?",
+        "Where can I find {location} {hall_id}?",
+        "Where is {location} {hall_id}?",
+        "How can I get to {location} {hall_id}?"
+      ],
+      "inputs": [{
+          "name": "location",
+          "type": "UNI_COMMON_ADDRESSES",
+          "dialogflow": {
+            "required": true
+          }
+        },
+        {
+          "name": "hall_id",
+          "type": {
+            "dialogflow": "@sys.number"
+          }
+        }
+      ]
+    }
+  ],
+  "inputTypes": [{
+      "name": "AVAIL_LOCATIONS",
+      "dialogflow": {
+        "automatedExpansion": true
+      },
+      "values": [{
+          "value": "campus service center",
+          "synonyms": [
+            "csc",
+            "campus center",
+            "service center",
+            "info center",
+            "campus office"
+          ]
+        },
+        {
+          "value": "exam office",
+          "synonyms": [
+            "examination office",
+            "exam info center",
+            "exam center",
+            "examinations"
+          ]
+        },
+        {
+          "value": "students office",
+          "synonyms": [
+            "student center",
+            "student office"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TRANSCRIPT_TYPES",
+      "dialogflow": {
+        "automatedExpansion": true
+      },
+      "values": [{
+          "value": "physical",
+          "synonyms": [
+            "paper",
+            "sheet",
+            "i want to pick it up myself",
+            "i will come by",
+            "pick up",
+            "physically",
+            "by hand",
+            "I will come to the CSC"
+
+          ]
+        },
+        {
+          "value": "digital",
+          "synonyms": [
+            "web",
+            "online",
+            "digitally",
+            "Please send me a digital copy",
+            "Send it to me digitally",
+            "digital copy",
+            "Please send it via email",
+            "Mail it to me"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UNI_COMMON_ADDRESSES",
+      "dialogflow": {
+        "automatedExpansion": true
+      },
+      "values": [{
+          "value": "mensa",
+          "synonyms": [
+            "Cafeteria",
+            "Canteen",
+            "Food",
+            "Mess",
+            "Lunch room",
+            "Cafe"
+          ]
+        },
+        {
+          "value": "hall",
+          "synonyms": [
+            "Auditorium",
+            "Assembly hall",
+            "Lecture hall",
+            "Hall",
+            "Lecture room",
+            "room"
+          ]
+        }
+      ]
+    }
+  ],
+  "dialogflow": {
+    "intents": [{
+        "name": "Default Fallback Intent",
+        "auto": true,
+        "webhookUsed": true,
+        "fallbackIntent": true
+      },
+      {
+        "name": "Default Welcome Intent",
+        "auto": true,
+        "webhookUsed": true,
+        "events": [{
+          "name": "WELCOME"
+        }]
+      }
+    ]
+  }
+}
